@@ -20,3 +20,16 @@ end
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+
+#Create advertisements
+  Advertisement.create!(
+    title: "First class tickets to Morrocco",
+    copy: "Fly like you never have before",
+    price: 500
+    )
+
+  Advertisement.create!(
+    title: "Green leafy vegetables",
+    copy: "Healthy and tasty, delivered to your home",
+    price: 5
+    )
