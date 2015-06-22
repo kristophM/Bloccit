@@ -1,0 +1,16 @@
+<h1>All Questions</h1>
+<% @questions.each do |question| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+          <%if question.resolved %>
+            <%= link_to question.title, question_path(question.id) %>
+            <span style="color: red;"> -RESOLVED.</span>
+          <%else %>
+            <%= link_to question.title, question_path(question.id) %>
+          <%end %>
+      </h4>
+    </div>
+  </div>
+<% end %>
+<%= link_to "Add a new question", new_question_path %>

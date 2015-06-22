@@ -1,0 +1,26 @@
+<h1>Edit Question</h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= form_for @question do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "Enter question title" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter question body" %>
+        <%= f.label "Resolved?" %>
+        <%= check_box "Resolved?", :resolved, {}, '1', '0'%>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Save", class: 'btn btn-success' %>
+      </div>
+    <% end  %>
+    <%= form_for @question, method: :delete do |f| %>
+      <div class="form-group">
+      <%= f.submit "Delete Post", class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+</div>
