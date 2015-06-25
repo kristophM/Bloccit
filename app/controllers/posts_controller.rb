@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  #put in skip filter
+  skip_before_action :flash_attack, :only => [:index, :new]
 
   def index
     @posts = Post.all
@@ -37,5 +39,7 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
+
 
 end
