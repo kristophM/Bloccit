@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :advertisements
 
-  resources :posts
-
   resources :questions
 
-  resources :topics
+  resources :topics do 
+    resources :posts, except: [:index]
+  end
 
   get 'welcome/index'
 
