@@ -9,20 +9,25 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
+    @summary = @post.summary
   end
 
   def new
     @post = Post.new
+    @topic = Topic.find(params[:topic_id])
     authorize @post
   end
 
   def edit
     @post = Post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
     authorize @post
   end
 
   def update
     @post = Post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
     authorize @post
     if @post.update_attributes(params.require(:post).permit(:title, :body))
       flash[:notice] = "post was updated."
@@ -36,6 +41,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(params.require(:post).permit(:title, :body))
     # @post = Post.new(params.require(:post).permit(:title, :body))
+    @topic = Topic.find(params[:topic_id])
     authorize @post
     if @post.save
       flash[:notice] = "Post was saved."
