@@ -61,12 +61,12 @@ ActiveRecord::Schema.define(version: 20150702011249) do
 
   create_table "summaries", force: :cascade do |t|
     t.text     "body"
-    t.integer  "Post_id"
+    t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "summaries", ["Post_id"], name: "index_summaries_on_Post_id"
+  add_index "summaries", ["post_id"], name: "index_summaries_on_post_id"
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
