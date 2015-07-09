@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users do
+    resources :users, only: [:update]
+  end
+
   resources :advertisements
 
   resources :questions
