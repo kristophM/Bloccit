@@ -13,6 +13,20 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
     authorize @topic
+
+    def markdown_title
+      renderer = Redcarpet::Render::HTML.new
+      extensions = {fenced_code_blocks: true}
+      redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+      (redcarpet.render @post.title).html_safe
+    end
+
+    def markdown_body
+      renderer = Redcarpet::Render::HTML.new
+      extensions = {fenced_code_blocks: true}
+      redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+      (redcarpet.render @post.body).html_safe
+    end
   end
 
   def edit
