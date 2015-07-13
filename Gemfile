@@ -31,6 +31,8 @@ gem 'bootstrap-sass'
 gem 'figaro', '1.0'
 #Use Pundit for user controlling access rights of members (users)
 gem 'pundit'
+#For markdown functionality
+gem 'redcarpet'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
