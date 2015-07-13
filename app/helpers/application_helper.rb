@@ -11,3 +11,5 @@ module ApplicationHelper
      end
   end
 end
+
+#available in views

@@ -11,14 +11,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
     @summary = @post.summary
-
-    def markdown_title
-      (render_as_markdown.render @post.title).html_safe
-    end
-
-    def markdown_body
-      (render_as_markdown.render @post.body).html_safe
-    end
   end
 
   def new
@@ -65,12 +57,6 @@ private
 
 def post_params
   params.require(:post).permit(:title, :body)
-end
-
-def render_as_markdown
-  renderer = Redcarpet::Render::HTML.new
-  extensions = {fenced_code_blocks: true}
-  redcarpet = Redcarpet::Markdown.new(renderer, extensions)
 end
 
 
