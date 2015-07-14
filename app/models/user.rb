@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   def moderator?
     role == 'moderator'
   end
+
+  mount_uploader :avatar, AvatarUploader
 end
