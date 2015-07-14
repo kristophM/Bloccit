@@ -74,7 +74,7 @@ member = User.new(
 member.skip_confirmation!
 member.save!
 
-10.times do 
+2000.times do 
   Topic.create!(
     name: Faker::Lorem.sentence,
     description: Faker::Lorem.paragraph)
@@ -82,7 +82,7 @@ end
 topics = Topic.all
 
 # #Create posts
-50.times do
+500.times do
   Post.create!(
     user: users.sample,
     topic: topics.sample,
