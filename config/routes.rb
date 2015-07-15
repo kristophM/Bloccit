@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users do
-    resources :users, only: [:update]
-  end
+  devise_for :users 
+  resources :users, only: [:update]
+
 
   resources :advertisements
 
