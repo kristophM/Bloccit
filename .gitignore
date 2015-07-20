@@ -21,3 +21,6 @@ config/application.yml
 
 # Ignore Ruby mine directory
 .idea
+
+#Ignore S3 uploader
+public/uploads
