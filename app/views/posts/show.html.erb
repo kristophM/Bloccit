@@ -8,6 +8,7 @@
        <%= @post.user.name %>
     </small>
     <p><%= @post.markdown_body %></p>
+    <%= image_tag(@post.postimage) %>
   </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
