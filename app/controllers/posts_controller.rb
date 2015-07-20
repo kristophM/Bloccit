@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
     @summary = @post.summary
+    @comments = @post.comments
   end
 
   def new

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'comment/create'
+
   devise_for :users 
   resources :users, only: [:update]
 
@@ -10,7 +12,8 @@ Rails.application.routes.draw do
 
   resources :topics do 
     resources :posts, except: [:index] do
-      resources :summaries, except: [:index] 
+      resources :summaries, except: [:index]
+      resources :comments, only: [:create] 
     end
   end
 
