@@ -16,3 +16,7 @@
     <% end %>
   </div>
 </div>
+
+<% @comments.each do |comment| %>
+  <%= render "comments/comment", locals: { comment: comment } %>
+<% end %>
