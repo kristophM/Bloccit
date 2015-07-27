@@ -41,6 +41,7 @@ gem 'mini_magick'
 #For AWS S3
 gem 'fog'
 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -62,6 +63,9 @@ group :development, :test do
 
   # Use SQlite3 for development only
   gem 'sqlite3'
+
+  # Rspec tests
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :production do
