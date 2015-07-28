@@ -11,6 +11,12 @@ class Post < ActiveRecord::Base
   validates :user, presence: true
 
   default_scope { order('created_at DESC')}
+  # posts = Post.ordered_by_title
+  # private_posts = Post.where(private: true).ordered_by_title
+  # posts_with_the = Post.where("title LIKE '%the%'").where(...).some_scope.another_scope
+  # Posts.where("title like '%#{params[:q]}%'") #DANDGER
+  # Posts.where("title like '%?%'", params[:q]) Protect against SQL injection (sanitization) 
+  # select * from posts where title like '%'; delete from users;
   scope :ordered_by_title, -> { order('title ASC') }
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
 
