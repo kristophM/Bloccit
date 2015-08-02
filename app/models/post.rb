@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   # select * from posts where title like '%'; delete from users;
   scope :ordered_by_title, -> { order('title ASC') }
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
-  
+
 
   def markdown_title
     (render_as_markdown.render title).html_safe
@@ -51,6 +51,13 @@ class Post < ActiveRecord::Base
 
   def create_vote
     user.votes.create(post: self, value: 1)
+  end
+
+  def save_with_initial_vote
+    ActiveRecord::Base.transaction do
+      @post.save
+      @post.create_vote 
+    end
   end
 
 private
