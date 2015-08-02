@@ -8,8 +8,8 @@ class Post < ActiveRecord::Base
 
   validates :title, length: {minimum: 5}, presence: true
   validates :body, length: {minimum: 20}, presence: true
-  # validates :topic, presence: true
-  # validates :user, presence: true
+  validates :topic, presence: true
+  validates :user, presence: true
 
   default_scope { order('rank DESC')}
   # posts = Post.ordered_by_title
@@ -20,8 +20,7 @@ class Post < ActiveRecord::Base
   # select * from posts where title like '%'; delete from users;
   scope :ordered_by_title, -> { order('title ASC') }
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
-
-  after_create :create_vote
+  
 
   def markdown_title
     (render_as_markdown.render title).html_safe
@@ -50,16 +49,16 @@ class Post < ActiveRecord::Base
      update_attribute(:rank, new_rank)
   end
 
+  def create_vote
+    user.votes.create(post: self, value: 1)
+  end
+
 private
 
   def render_as_markdown
     renderer = Redcarpet::Render::HTML.new
     extensions = {fenced_code_blocks: true}
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
-  end
-
-  def create_vote
-    user.votes.create(post: self, value: 1)
   end
 
 end

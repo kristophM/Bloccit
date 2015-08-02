@@ -6,7 +6,9 @@ require 'rails_helper'
      before do
       # topic = Topic.new(name: 'big blah blah blah')
       # user = User.new(email: 'david.cameron@uk.gov', password: 'password')
-       @post = Post.create(title: 'post title', body: 'post body blah blah blah')
+      include TestFactories
+
+       @post = associated_post
        3.times { @post.votes.create(value: 1) }
        2.times { @post.votes.create(value: -1) }
      end
@@ -28,5 +30,14 @@ require 'rails_helper'
          expect( @post.points ).to eq(1) # 3 - 2
        end
      end
+
+     describe '#create_vote' do
+     it "generates an up-vote when explicitly called" do
+       post = associated_post
+       expect( post.up_votes ).to eq(0)
+       post.create_vote
+       expect( post.up_votes ).to eq(1)
+     end
+   end
    end
  end
