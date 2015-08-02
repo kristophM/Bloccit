@@ -74,7 +74,7 @@ member = User.new(
 member.skip_confirmation!
 member.save!
 
-2000.times do 
+20.times do 
   Topic.create!(
     name: Faker::Lorem.sentence,
     description: Faker::Lorem.paragraph)
@@ -83,12 +83,15 @@ topics = Topic.all
 
 # #Create posts
 500.times do
-  Post.create!(
+  post = Post.create!(
     user: users.sample,
     topic: topics.sample,
     title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraph
     )
+  # set the created_at to a time within the past year
+   post.update_attributes!(created_at: rand(10.minutes .. 1.year).ago)
+   post.update_rank
 end
 
 posts = Post.all

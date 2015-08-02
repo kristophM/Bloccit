@@ -3,14 +3,15 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   has_one :summary
+  has_many :votes
   mount_uploader :postimage, PostimageUploader
 
   validates :title, length: {minimum: 5}, presence: true
   validates :body, length: {minimum: 20}, presence: true
-  validates :topic, presence: true
-  validates :user, presence: true
+  # validates :topic, presence: true
+  # validates :user, presence: true
 
-  default_scope { order('created_at DESC')}
+  default_scope { order('rank DESC')}
   # posts = Post.ordered_by_title
   # private_posts = Post.where(private: true).ordered_by_title
   # posts_with_the = Post.where("title LIKE '%the%'").where(...).some_scope.another_scope
@@ -28,6 +29,24 @@ class Post < ActiveRecord::Base
     (render_as_markdown.render body).html_safe
   end
 
+  def up_votes
+     votes.where(value: 1).count
+  end
+
+  def down_votes
+     votes.where(value: -1).count
+  end
+
+  def points
+    votes.sum(:value)
+  end
+
+  def update_rank
+     age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
+     new_rank = points + age_in_days
+ 
+     update_attribute(:rank, new_rank)
+  end
 
 private
 

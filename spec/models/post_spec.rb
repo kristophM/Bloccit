@@ -4,7 +4,9 @@ require 'rails_helper'
    describe "vote methods" do
  
      before do
-       @post = Post.create(title: 'post title', body: 'post body')
+      # topic = Topic.new(name: 'big blah blah blah')
+      # user = User.new(email: 'david.cameron@uk.gov', password: 'password')
+       @post = Post.create(title: 'post title', body: 'post body blah blah blah')
        3.times { @post.votes.create(value: 1) }
        2.times { @post.votes.create(value: -1) }
      end
