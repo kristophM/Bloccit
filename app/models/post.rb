@@ -21,6 +21,8 @@ class Post < ActiveRecord::Base
   scope :ordered_by_title, -> { order('title ASC') }
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
 
+  after_create :create_vote
+
   def markdown_title
     (render_as_markdown.render title).html_safe
   end
@@ -54,6 +56,10 @@ private
     renderer = Redcarpet::Render::HTML.new
     extensions = {fenced_code_blocks: true}
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+  end
+
+  def create_vote
+    user.votes.create(post: self, value: 1)
   end
 
 end
