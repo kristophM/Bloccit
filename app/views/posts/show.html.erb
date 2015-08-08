@@ -34,5 +34,5 @@
 
 <% if policy(@comment).create? %>
   <h3>Post your own comments here:</h3>
-  <%= render partial: 'comments/form.html.erb', locals: {topic: @topic, post: @post, comment: Comment.new} %>
+  <%= render partial: 'comments/form.html.erb', locals: {topic: @topic, post: @post, comment: @comment} %>
 <% end %>
