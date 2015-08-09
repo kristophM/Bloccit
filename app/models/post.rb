@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   # private_posts = Post.where(private: true).ordered_by_title
   # posts_with_the = Post.where("title LIKE '%the%'").where(...).some_scope.another_scope
   # Posts.where("title like '%#{params[:q]}%'") #DANDGER
-  # Posts.where("title like '%?%'", params[:q]) Protect against SQL injection (sanitization) 
+  # Posts.where("title like '%?%'", params[:q]) Protect against SQL injection (sanitization)
   # select * from posts where title like '%'; delete from users;
   scope :ordered_by_title, -> { order('title ASC') }
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
   def update_rank
      age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
      new_rank = points + age_in_days
- 
+
      update_attribute(:rank, new_rank)
   end
 
@@ -55,8 +55,8 @@ class Post < ActiveRecord::Base
 
   def save_with_initial_vote
     ActiveRecord::Base.transaction do
-      @post.save
-      @post.create_vote 
+      self.save!
+      self.create_vote
     end
   end
 
