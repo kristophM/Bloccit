@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
+    authorize @topic
     @summary = @post.summary
     @comments = @post.comments
     @comment = Comment.new
@@ -58,7 +59,7 @@ class PostsController < ApplicationController
      @topic = Topic.find(params[:topic_id])
      @post = Post.find(params[:id])
      authorize @post
- 
+
      if @post.destroy
        flash[:notice] = "\"#{@post.title}\" was deleted successfully."
        redirect_to @topic
