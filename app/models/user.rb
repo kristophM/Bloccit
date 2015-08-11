@@ -18,7 +18,11 @@ class User < ActiveRecord::Base
 
   def favorited(post)
      favorites.where(post_id: post.id).first
-   end
+  end
+
+  def voted(post)
+    votes.where(post_id: post.id).first
+  end
 
   mount_uploader :avatar, AvatarUploader
 end
