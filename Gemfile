@@ -42,6 +42,8 @@ gem 'mini_magick'
 gem 'fog'
 #for performance monitoring
 gem 'newrelic_rpm'
+#Heroku
+gem 'puma'
 
 
 # Use ActiveModel has_secure_password
