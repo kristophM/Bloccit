@@ -40,6 +40,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 #For AWS S3
 gem 'fog'
+#for performance monitoring
+gem 'newrelic_rpm'
 
 
 # Use ActiveModel has_secure_password
