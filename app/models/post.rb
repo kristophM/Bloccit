@@ -21,6 +21,7 @@ class Post < ActiveRecord::Base
   # select * from posts where title like '%'; delete from users;
   scope :ordered_by_title, -> { order('title ASC') }
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
 
 
   def markdown_title
