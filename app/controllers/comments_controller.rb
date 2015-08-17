@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new( comment_params )
     @comment.user = current_user
     @comment.post = @post
-    @topic = @post.topic 
+
     authorize @comment
 
     if @comment.save
@@ -29,10 +29,13 @@ class CommentsController < ApplicationController
 
     if @comment.destroy
      flash[:notice] = "Comment was removed."
-     redirect_to [@topic, @post]
     else
      flash[:error] = "Comment couldn't be deleted. Try again."
-     redirect_to [@post, @comment]
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

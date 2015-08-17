@@ -72,9 +72,14 @@ group :development, :test do
   # Rspec tests
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
+
+  # server
+  gem 'thin'
 end
 
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  # server
+  gem 'puma'
 end
