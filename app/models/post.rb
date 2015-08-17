@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   has_one :summary
   has_many :votes
+  has_many :favorites, dependent: :destroy
   mount_uploader :postimage, PostimageUploader
 
   validates :title, length: {minimum: 5}, presence: true
