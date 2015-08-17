@@ -42,6 +42,8 @@ gem 'mini_magick'
 gem 'fog'
 #for performance monitoring
 gem 'newrelic_rpm'
+#For factory in rspec tests
+gem 'factory_girl_rails', '~> 4.0'
 
 
 
