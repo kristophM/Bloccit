@@ -29,11 +29,13 @@
 </div>
 
 <h3>Comments on this post</h3>
-<% @comments.each do |comment| %>
-  <%= render partial: "comments/comment", locals: { comment: comment } %>
-<% end %>
+<div class='js-comments'>
+   <%= render partial: 'comments/comment', collection: @comments %>
+</div>
 
 <% if policy(@comment).create? %>
   <h3>Post your own comments here:</h3>
-  <%= render partial: 'comments/form.html.erb', locals: {topic: @topic, post: @post, comment: @comment} %>
+  <div class='new-comment'>
+    <%= render partial: 'comments/form', locals: {comment: @comment} %>
+  </div>
 <% end %>
