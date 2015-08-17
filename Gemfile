@@ -71,6 +71,7 @@ group :development, :test do
 
   # Rspec tests
   gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
 end
 
 group :production do
